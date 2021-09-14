@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControlPicking.Views.OrderPick"
+             xmlns:local="clr-namespace:ControlPicking.Images"
+             Title="Picking Control">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image x:Name="ImageMazda"
+               Source="{local:ImageResourceExtension ControlPicking.Images.oficial.PNG}"
+               WidthRequest="100"
+               HeightRequest="100"
+            />
+
+            <Entry Placeholder="Escanea una Orden"
+                   x:Name="txtOrden"
+                   PlaceholderColor="Blue"
+                   BackgroundColor="LightGray"
+                   TextColor="Blue"
+                   HorizontalOptions="FillAndExpand"
+                   Completed="txtOrden_Completed"
+             />
+            <ListView x:Name="lvOrdenes" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemTapped="lvOrdenes_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical" WidthRequest="100">
+                                    <Label
+                                    Text="Pick_Lpn:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
+                                    Text="Line:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
+                                    Text="Orden:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
+                                    Text="Item:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
+                                    Text="Fecha:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
+                                    Text="Estatus:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical" WidthRequest="300">
+                                    <Label
+                                    Text="{Binding Pick_Lnp}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                    <Label
+                                    Text="{Binding Line}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                    <Label
+                                    Text="{Binding Orden}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                    <Label  Text="{Binding Item}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                    <Label
+                                    Text="{Binding Fecha}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                    <Label
+                                    Text="{Binding Estatus}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
