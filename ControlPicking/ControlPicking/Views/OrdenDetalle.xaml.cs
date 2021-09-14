@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -82,9 +81,13 @@ namespace ControlPicking.Views
             }
 
 
-            if (itemtxt.ToString().Contains(" "))
+            if (!itemtxt.ToString().Contains(" ") && itemtxt.Length>11)
             {
-                itemtxt = itemtxt.Substring(1, 12);
+                itemtxt = itemtxt.Substring(0, 12);
+            }
+            if (itemtxt.ToString().Contains(" ") && itemtxt.Length <= 12)
+            {
+                itemtxt = itemtxt.Substring(0, 10).Trim();
             }
 
 
