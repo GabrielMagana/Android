@@ -39,8 +39,15 @@
     <BundleAssemblies>false</BundleAssemblies>
     <MandroidI18n>West</MandroidI18n>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
     <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
+    <AndroidUseAapt2>false</AndroidUseAapt2>
+    <AndroidKeyStore>false</AndroidKeyStore>
+    <AndroidSigningKeyStore>C:\Users\Magana.g\AppData\Local\Xamarin\Mono for Android\Keystore\Mazdalogi\Mazdalogi.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>Mazda2021</AndroidSigningStorePass>
+    <AndroidSigningKeyPass>Mazda2021</AndroidSigningKeyPass>
+    <AndroidSigningKeyAlias>Mazda</AndroidSigningKeyAlias>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +73,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SoftkeyboardDisabledEntryRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

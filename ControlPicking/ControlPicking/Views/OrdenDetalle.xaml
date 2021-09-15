@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlPicking.Views.OrdenDetalle"
              xmlns:local="clr-namespace:ControlPicking.Images"
+             xmlns:local1="clr-namespace:ControlPicking.Models"
              Title="Picking Control">
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -88,7 +89,7 @@
                         FontSize="Micro"
                         HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
-            <Entry Placeholder="Escanea una número de parte"
+            <local1:SoftkeyboardDisabledEntry  Placeholder="Escanea una número de parte"
                    x:Name="txtNparte"
                    PlaceholderColor="Blue"
                    BackgroundColor="LightGray"

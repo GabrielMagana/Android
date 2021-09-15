@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPicking.Android", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPicking.iOS", "ControlPicking\ControlPicking.iOS\ControlPicking.iOS.csproj", "{CF542D3C-1617-45DA-8351-B2A84B50A65E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControlPicking", "ControlPicking\ControlPicking\ControlPicking.csproj", "{5AA8EBD6-4EC0-43A9-9F06-BAB619C7A781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlPicking", "ControlPicking\ControlPicking\ControlPicking.csproj", "{5AA8EBD6-4EC0-43A9-9F06-BAB619C7A781}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,7 +38,6 @@ Global
 		{36FA4EF6-6D24-40E2-9CFD-D31723B94553}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{36FA4EF6-6D24-40E2-9CFD-D31723B94553}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|Any CPU.Build.0 = Debug|iPhone
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|Any CPU.Deploy.0 = Debug|iPhone
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|iPhone.Build.0 = Debug|iPhone
@@ -47,7 +46,6 @@ Global
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Release|Any CPU.Deploy.0 = Release|iPhoneSimulator
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Release|iPhone.ActiveCfg = Release|iPhone
 		{CF542D3C-1617-45DA-8351-B2A84B50A65E}.Release|iPhone.Build.0 = Release|iPhone

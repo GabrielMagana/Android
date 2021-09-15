@@ -1,4 +1,10 @@
-﻿using Xamarin.Forms;
+﻿using ControlPicking.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ControlPicking
 {
@@ -9,6 +15,7 @@ namespace ControlPicking
             InitializeComponent();
         }
 
+     
         protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () =>
