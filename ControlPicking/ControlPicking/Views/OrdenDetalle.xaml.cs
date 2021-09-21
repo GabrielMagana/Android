@@ -62,9 +62,6 @@ namespace ControlPicking.Views
 
 
             itemParte = Itemtext(txtNparte.Text);
-
-            
-            
             
             if (numeroparte.ToUpper() != itemParte.ToUpper())
             {
@@ -111,7 +108,7 @@ namespace ControlPicking.Views
             {
                 itemtxt = itemtxt.Substring(0, 12);
             }
-            if (itemtxt.ToString().Contains("$") && itemtxt.Length <= 12)
+            if (itemtxt.ToString().Contains("$") && itemtxt.Length > 11)
             {
 
                 if (itemtxt.Substring(9, 1).Equals("$"))

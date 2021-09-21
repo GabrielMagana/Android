@@ -89,7 +89,8 @@
                         FontSize="Micro"
                         HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
-            <local1:SoftkeyboardDisabledEntry   Placeholder="Escanea una número de parte"
+
+            <local1:SoftkeyboardDisabledEntry  Placeholder="Escanea una número de parte"
                    x:Name="txtNparte"
                    PlaceholderColor="Blue"
                    BackgroundColor="LightGray"
