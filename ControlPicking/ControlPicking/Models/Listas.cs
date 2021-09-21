@@ -7,7 +7,6 @@
         public string Estatus { get; set; }
         public int Orden { get; set; }
         public int Line { get; set; }
-        public string Fecha { get; set; }
 
     }
     public class Detalle

@@ -15,7 +15,7 @@ namespace ControlPicking.Views
         Models.ValidacionPick Validaciones = new Models.ValidacionPick();
         List<Models.Detalle> DetalleList;
         string itemParte;
-        int Cantidadleida, CantidadTotal;
+        int Cantidadleida, CantidadTotal, OrdenNo, Line;
         string numeroparte, Orden;
 
 
@@ -39,13 +39,34 @@ namespace ControlPicking.Views
                 txtNparte.Text = "";
                 return;
             }
-            
+
+           
+            if (!numeroparte.ToString().Contains(" ") && numeroparte.Length > 11)
+            {
+                numeroparte = numeroparte.Substring(0, 12);
+            }
+            if (numeroparte.ToString().Contains(" ") && numeroparte.Length <= 12)
+            {
+                
+                
+                if(numeroparte.Substring(10, 1).Equals(" "))
+                    {
+                    numeroparte = numeroparte.Substring(0, 9).Trim();
+                }
+                else
+                {
+                    numeroparte = numeroparte.Substring(0, 10).Trim();
+                }
+
+            }
+
+
             itemParte = Itemtext(txtNparte.Text);
 
             
             
             
-            if (numeroparte != itemParte)
+            if (numeroparte.ToUpper() != itemParte.ToUpper())
             {
                 await DisplayAlert("Error", "El número de parte no es el mismo", "OK");
                 txtNparte.Focus();
@@ -61,7 +82,7 @@ namespace ControlPicking.Views
                 return;
             }
 
-            ActualizarItem(itemParte, Orden);
+            ActualizarItem(itemParte.ToUpper(), Orden,OrdenNo,Line);
 
             txtNparte.Focus();
             txtNparte.Text = "";
@@ -83,13 +104,25 @@ namespace ControlPicking.Views
             }
 
 
-            if (!itemtxt.ToString().Contains(" ") && itemtxt.Length>11)
+
+            itemtxt= itemtxt.Replace(" ", "$");
+
+            if (!itemtxt.ToString().Contains("$") && itemtxt.Length>11)
             {
                 itemtxt = itemtxt.Substring(0, 12);
             }
-            if (itemtxt.ToString().Contains(" ") && itemtxt.Length <= 12)
+            if (itemtxt.ToString().Contains("$") && itemtxt.Length <= 12)
             {
-                itemtxt = itemtxt.Substring(0, 10).Trim();
+
+                if (itemtxt.Substring(9, 1).Equals("$"))
+                {
+                    itemtxt = itemtxt.Substring(0, 9).Trim();
+                }
+                else
+                {
+                    itemtxt = itemtxt.Substring(0, 10).Trim();
+                }
+
             }
 
 
@@ -121,6 +154,8 @@ namespace ControlPicking.Views
                     Cantidadleida = int.Parse(SqlRead1["Cantidad"].ToString());
                     CantidadTotal = int.Parse(SqlRead1["QtyTotal"].ToString());
                     numeroparte = SqlRead1["Item"].ToString().Trim();
+                    OrdenNo= int.Parse(SqlRead1["Order_no"].ToString());
+                    Line = int.Parse(SqlRead1["SO_Line"].ToString());
                     DetalleList.Add(new Models.Detalle { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Item_description = SqlRead1["Item_Description"].ToString(), Qty = int.Parse(SqlRead1["QtyTotal"].ToString()) });
                 }
 
@@ -139,7 +174,7 @@ namespace ControlPicking.Views
         }
 
 
-        private void ActualizarItem(string NParte, string Orden)
+        private void ActualizarItem(string NParte, string Orden,int OrdenNo, int Line)
         {
             string Mensajes;
             try
@@ -149,6 +184,8 @@ namespace ControlPicking.Views
                 SqlCommand SqlQuery = new SqlCommand("ActualizarIU", Services.ConexionSql.Conectar);
                 SqlQuery.CommandType = CommandType.StoredProcedure;
                 SqlQuery.Parameters.AddWithValue("@item", NParte);
+                SqlQuery.Parameters.AddWithValue("@Orden", OrdenNo);
+                SqlQuery.Parameters.AddWithValue("@Line", Line);
                 SqlQuery.Parameters.AddWithValue("@LnpPadre", Orden);
 
                 SqlQuery.ExecuteNonQuery();

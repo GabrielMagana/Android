@@ -101,7 +101,7 @@ namespace ControlPicking.Views
 
                 while (SqlRead1.Read())
                 {
-                    OrdenList.Add(new Models.Listas { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Fecha = SqlRead1["Schedule_ship_date"].ToString(), Estatus = SqlRead1["Estatus"].ToString() });
+                    OrdenList.Add(new Models.Listas { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Estatus = SqlRead1["Estatus"].ToString() });
                 }
 
                 lvOrdenes.ItemsSource = OrdenList;

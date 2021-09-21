@@ -20,6 +20,7 @@
                    TextColor="Blue"
                    HorizontalOptions="FillAndExpand"
                    Completed="txtOrden_Completed"
+                    TextTransform="Uppercase"
              />
             <ListView x:Name="lvOrdenes" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemTapped="lvOrdenes_ItemTapped">
                 <ListView.ItemTemplate>
@@ -41,10 +42,6 @@
                                     HorizontalOptions="FillAndExpand"/>
                                     <Label
                                     Text="Item:"
-                                    FontSize="Micro"
-                                    HorizontalOptions="FillAndExpand"/>
-                                    <Label
-                                    Text="Fecha:"
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
                                     <Label
@@ -73,11 +70,7 @@
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
                                     
-                                    <Label
-                                    Text="{Binding Fecha}"
-                                    FontSize="Micro"
-                                    HorizontalOptions="FillAndExpand"/>
-                                    
+                                                                      
                                     <Label
                                     Text="{Binding Estatus}"
                                     FontSize="Micro"

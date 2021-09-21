@@ -1,20 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
+﻿using Android.Content;
 using Android.Views.InputMethods;
-using Android.Widget;
+using ControlPicking.Droid;
+using ControlPicking.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using ControlPicking.Models;
-using ControlPicking.Droid;
 
 [assembly: ExportRenderer(typeof(SoftkeyboardDisabledEntry), typeof(SoftkeyboardDisabledEntryRenderer))]
 namespace ControlPicking.Droid
