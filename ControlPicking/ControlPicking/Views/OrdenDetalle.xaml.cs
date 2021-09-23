@@ -24,9 +24,8 @@ namespace ControlPicking.Views
             InitializeComponent();
             ItemDetalle(_orden, _idPick);
             Orden = _orden;
-            txtNparte.Text = "";
             txtNparte.Focus();
-                }
+        }
      
 
         private async void txtNparte_Completed(object sender, EventArgs e)
@@ -198,6 +197,13 @@ namespace ControlPicking.Views
                 Mensajes = ex.Message;
                 Services.ConexionSql.CloseC();
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            txtNparte.Focus();
         }
 
     }

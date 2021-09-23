@@ -23,7 +23,9 @@ namespace ControlPicking.Views
         public OrderPick()
         {
             InitializeComponent();
+            txtOrden.Text = "";
             txtOrden.Focus();
+
         }
       
 
@@ -34,8 +36,11 @@ namespace ControlPicking.Views
                 var result = await this.DisplayAlert("Alerta", "Deseas salir de la aplicación?", "Si", "No").ConfigureAwait(false);
                 if (result) System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
             });
+            txtOrden.Text = "";
+            txtOrden.Focus();
             return true;
         }
+     
 
 
         private async void txtOrden_Completed(object sender, EventArgs e)
@@ -141,9 +146,17 @@ namespace ControlPicking.Views
             Listas content = (Listas)e.Item;
             idpick = (int)content.IdPick;
             ordentext = (string)content.Pick_Lnp.Trim();
-
+            lvOrdenes.ItemsSource = null;
+            txtOrden.Focus();
             await Navigation.PushAsync(new OrdenDetalle(ordentext, idpick));
 
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            txtOrden.Focus();
         }
     }
 }
