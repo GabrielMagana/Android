@@ -19,6 +19,10 @@
                             <StackLayout Orientation="Horizontal" >
                                 <StackLayout Orientation="Vertical" WidthRequest="140">
                                     <Label
+                                    Text="Id:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
+                                    <Label
                                     Text="Pick_Lpn:"
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
@@ -35,16 +39,16 @@
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
                                     <Label
-                                    Text="Descripción:"
-                                    FontSize="Micro"
-                                    HorizontalOptions="FillAndExpand"/>
-                                    <Label
                                     Text="Qty:"
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
 
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical" WidthRequest="300">
+                                    <Label
+                                    Text="{Binding IdPick}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
                                     <Label
                                     Text="{Binding Pick_Lnp}"
                                     FontSize="Micro"
@@ -61,10 +65,7 @@
                                     Text="{Binding Item}"
                                     FontSize="Micro"
                                     HorizontalOptions="FillAndExpand"/>
-                                    <Label
-                                    Text="{Binding Item_description}"
-                                    FontSize="Micro"
-                                    HorizontalOptions="FillAndExpand"/>
+                                   
                                     <Label
                                     Text="{Binding Qty}"
                                     FontSize="Micro"
@@ -90,7 +91,7 @@
                         HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
 
-            <local1:SoftkeyboardDisabledEntry  Placeholder="Escanea una número de parte"
+            <Entry  Placeholder="Escanea una número de parte"
                    x:Name="txtNparte"
                    PlaceholderColor="Blue"
                    BackgroundColor="LightGray"

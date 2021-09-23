@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Android.App;
 using ControlPicking.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace ControlPicking.Views
         Models.ValidacionPick Validaciones = new Models.ValidacionPick();
         List<Models.Listas> OrdenList;
         String ordentext = "";
+        Int32 idpick;
         public OrderPick()
         {
             InitializeComponent();
@@ -45,8 +47,9 @@ namespace ControlPicking.Views
             if (string.IsNullOrWhiteSpace(txtOrden.Text) == true)
             {
                 await DisplayAlert("Error", "Debes escanear una orden", "OK");
-                txtOrden.Focus();
+               
                 txtOrden.Text = "";
+                txtOrden.Focus();
                 return;
             }
 
@@ -67,10 +70,11 @@ namespace ControlPicking.Views
             ordentext = ordentxt;
 
             Orden(ordentxt);
-            txtOrden.Focus();
+            
             txtOrden.Text = "";
+            txtOrden.Focus();
 
-        
+
         }
 
 
@@ -101,7 +105,7 @@ namespace ControlPicking.Views
 
                 while (SqlRead1.Read())
                 {
-                    OrdenList.Add(new Models.Listas { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Estatus = SqlRead1["Estatus"].ToString() });
+                    OrdenList.Add(new Models.Listas { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Estatus = SqlRead1["Estatus"].ToString(), IdPick = Int32.Parse(SqlRead1["IdPick"].ToString()) });
                 }
 
                 lvOrdenes.ItemsSource = OrdenList;
@@ -132,15 +136,13 @@ namespace ControlPicking.Views
 
 
 
-        private async void lvOrdenes_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void LvOrdenes_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            Listas content = (Listas)e.Item;
+            idpick = (int)content.IdPick;
+            ordentext = (string)content.Pick_Lnp.Trim();
 
-            lvOrdenes.ItemsSource = null;
-            await Navigation.PushAsync(new OrdenDetalle(ordentext));
-        }
-
-        private void txtOrden_Completed_1(object sender, EventArgs e)
-        {
+            await Navigation.PushAsync(new OrdenDetalle(ordentext, idpick));
 
         }
     }

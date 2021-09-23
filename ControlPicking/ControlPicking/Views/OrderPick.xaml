@@ -13,7 +13,7 @@
                HeightRequest="100"
             />
 
-            <local1:SoftkeyboardDisabledEntry Placeholder="Escanea una Orden"
+            <Entry Placeholder="Escanea una Orden"
                    x:Name="txtOrden"
                    PlaceholderColor="Blue"
                    BackgroundColor="LightGray"
@@ -22,12 +22,16 @@
                    Completed="txtOrden_Completed"
                     TextTransform="Uppercase"
              />
-            <ListView x:Name="lvOrdenes" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemTapped="lvOrdenes_ItemTapped">
+            <ListView x:Name="lvOrdenes" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemTapped="LvOrdenes_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <StackLayout Orientation="Vertical" WidthRequest="100">
+                                    <Label
+                                    Text="Pick:"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
                                     <Label
                                     Text="Pick_Lpn:"
                                     FontSize="Micro"
@@ -51,6 +55,10 @@
                                 </StackLayout>
 
                                 <StackLayout Orientation="Vertical" WidthRequest="300">
+                                    <Label
+                                    Text="{Binding IdPick}"
+                                    FontSize="Micro"
+                                    HorizontalOptions="FillAndExpand"/>
                                     <Label
                                     Text="{Binding Pick_Lnp}"
                                     FontSize="Micro"

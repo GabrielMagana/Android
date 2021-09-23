@@ -17,16 +17,16 @@ namespace ControlPicking.Views
         string itemParte;
         int Cantidadleida, CantidadTotal, OrdenNo, Line;
         string numeroparte, Orden;
+        Int32 PickUnico;
 
-
-        public OrdenDetalle(String _orden)
+        public OrdenDetalle(String _orden, Int32 _idPick)
         {
             InitializeComponent();
-            ItemDetalle(_orden);
+            ItemDetalle(_orden, _idPick);
             Orden = _orden;
-            txtNparte.Focus();
             txtNparte.Text = "";
-        }
+            txtNparte.Focus();
+                }
      
 
         private async void txtNparte_Completed(object sender, EventArgs e)
@@ -35,8 +35,8 @@ namespace ControlPicking.Views
             if (string.IsNullOrWhiteSpace(txtNparte.Text) == true)
             {
                 await DisplayAlert("Error", "Debes escanear un número de parte", "OK");
-                txtNparte.Focus();
                 txtNparte.Text = "";
+                txtNparte.Focus();
                 return;
             }
 
@@ -66,23 +66,23 @@ namespace ControlPicking.Views
             if (numeroparte.ToUpper() != itemParte.ToUpper())
             {
                 await DisplayAlert("Error", "El número de parte no es el mismo", "OK");
-                txtNparte.Focus();
                 txtNparte.Text = "";
+                txtNparte.Focus();
                 return;
             }
 
             if (Cantidadleida >= CantidadTotal)
             {
                 await DisplayAlert("Error", "La orden ya esta completa", "OK");
-                txtNparte.Focus();
                 txtNparte.Text = "";
+                txtNparte.Focus();
                 return;
             }
 
-            ActualizarItem(itemParte.ToUpper(), Orden,OrdenNo,Line);
-
-            txtNparte.Focus();
+            ActualizarItem(PickUnico);
             txtNparte.Text = "";
+            txtNparte.Focus();
+            
 
         }
 
@@ -127,7 +127,7 @@ namespace ControlPicking.Views
         }
 
 
-        public async void ItemDetalle(string _orden)
+        public async void ItemDetalle(string _orden,Int32 Pick)
         {
             DetalleList = new List<Models.Detalle>();
             string Mensajes = "";
@@ -140,6 +140,8 @@ namespace ControlPicking.Views
                 SqlCommand SqlQuery = new SqlCommand("ConsultarLPNSel", Services.ConexionSql.Conectar);
                 SqlQuery.CommandType = CommandType.StoredProcedure;
                 SqlQuery.Parameters.AddWithValue("@LPN", _orden);
+                SqlQuery.Parameters.AddWithValue("@idPick", Pick);
+
 
 
                 SqlDataReader SqlRead1 = SqlQuery.ExecuteReader();
@@ -153,7 +155,9 @@ namespace ControlPicking.Views
                     numeroparte = SqlRead1["Item"].ToString().Trim();
                     OrdenNo= int.Parse(SqlRead1["Order_no"].ToString());
                     Line = int.Parse(SqlRead1["SO_Line"].ToString());
-                    DetalleList.Add(new Models.Detalle { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Item_description = SqlRead1["Item_Description"].ToString(), Qty = int.Parse(SqlRead1["QtyTotal"].ToString()) });
+                    PickUnico = Int32.Parse(SqlRead1["IdPick"].ToString());
+
+                    DetalleList.Add(new Models.Detalle { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Qty = int.Parse(SqlRead1["QtyTotal"].ToString()), IdPick = Int32.Parse(SqlRead1["IdPick"].ToString()) });
                 }
 
                 lvOrdenes.ItemsSource = DetalleList;
@@ -171,7 +175,7 @@ namespace ControlPicking.Views
         }
 
 
-        private void ActualizarItem(string NParte, string Orden,int OrdenNo, int Line)
+        private void ActualizarItem(Int32 PickUnico)
         {
             string Mensajes;
             try
@@ -180,11 +184,8 @@ namespace ControlPicking.Views
 
                 SqlCommand SqlQuery = new SqlCommand("ActualizarIU", Services.ConexionSql.Conectar);
                 SqlQuery.CommandType = CommandType.StoredProcedure;
-                SqlQuery.Parameters.AddWithValue("@item", NParte);
-                SqlQuery.Parameters.AddWithValue("@Orden", OrdenNo);
-                SqlQuery.Parameters.AddWithValue("@Line", Line);
-                SqlQuery.Parameters.AddWithValue("@LnpPadre", Orden);
-
+                SqlQuery.Parameters.AddWithValue("@IdPick", PickUnico);
+               
                 SqlQuery.ExecuteNonQuery();
                 Services.ConexionSql.CloseC();
 
@@ -198,5 +199,6 @@ namespace ControlPicking.Views
                 Services.ConexionSql.CloseC();
             }
         }
+
     }
 }
