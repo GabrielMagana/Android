@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace ControlPicking.Views
 {
@@ -16,17 +18,19 @@ namespace ControlPicking.Views
         List<Models.Detalle> DetalleList;
         string itemParte;
         int Cantidadleida, CantidadTotal, OrdenNo, Line;
-        string numeroparte, Orden;
+        string numeroparte, Orden, equipo, _case1;
         Int32 PickUnico;
 
-        public OrdenDetalle(String _orden, Int32 _idPick)
+        public OrdenDetalle(string _orden, Int32 _idPick, string _case)
         {
             InitializeComponent();
             ItemDetalle(_orden, _idPick);
+            equipo = DeviceInfo.Name;
+            _case1 = _case;
             Orden = _orden;
             txtNparte.Focus();
         }
-     
+
 
         private async void txtNparte_Completed(object sender, EventArgs e)
         {
@@ -39,17 +43,17 @@ namespace ControlPicking.Views
                 return;
             }
 
-           
+
             if (!numeroparte.ToString().Contains(" ") && numeroparte.Length > 11)
             {
                 numeroparte = numeroparte.Substring(0, 12);
             }
             if (numeroparte.ToString().Contains(" ") && numeroparte.Length <= 12)
             {
-                
-                
-                if(numeroparte.Substring(10, 1).Equals(" "))
-                    {
+
+
+                if (numeroparte.Substring(10, 1).Equals(" "))
+                {
                     numeroparte = numeroparte.Substring(0, 9).Trim();
                 }
                 else
@@ -61,7 +65,7 @@ namespace ControlPicking.Views
 
 
             itemParte = Itemtext(txtNparte.Text);
-            
+
             if (numeroparte.ToUpper() != itemParte.ToUpper())
             {
                 await DisplayAlert("Error", "El número de parte no es el mismo", "OK");
@@ -78,10 +82,10 @@ namespace ControlPicking.Views
                 return;
             }
 
-            ActualizarItem(PickUnico);
+            ActualizarItem(PickUnico, _case1);
             txtNparte.Text = "";
             txtNparte.Focus();
-            
+
 
         }
 
@@ -92,7 +96,7 @@ namespace ControlPicking.Views
 
             if (char.IsLetterOrDigit(_Item, 1) == false || char.IsSeparator(_Item, 1) == true || _Item.ToString().Contains(fragment) == true)
             {
-                itemtxt = _Item.Substring(1, _Item.Length-1);
+                itemtxt = _Item.Substring(1, _Item.Length - 1);
             }
             else
             {
@@ -101,9 +105,9 @@ namespace ControlPicking.Views
 
 
 
-            itemtxt= itemtxt.Replace(" ", "$");
+            itemtxt = itemtxt.Replace(" ", "$");
 
-            if (!itemtxt.ToString().Contains("$") && itemtxt.Length>11)
+            if (!itemtxt.ToString().Contains("$") && itemtxt.Length > 11)
             {
                 itemtxt = itemtxt.Substring(0, 12);
             }
@@ -126,7 +130,7 @@ namespace ControlPicking.Views
         }
 
 
-        public async void ItemDetalle(string _orden,Int32 Pick)
+        public async void ItemDetalle(string _orden, Int32 Pick)
         {
             DetalleList = new List<Models.Detalle>();
             string Mensajes = "";
@@ -152,7 +156,7 @@ namespace ControlPicking.Views
                     Cantidadleida = int.Parse(SqlRead1["Cantidad"].ToString());
                     CantidadTotal = int.Parse(SqlRead1["QtyTotal"].ToString());
                     numeroparte = SqlRead1["Item"].ToString().Trim();
-                    OrdenNo= int.Parse(SqlRead1["Order_no"].ToString());
+                    OrdenNo = int.Parse(SqlRead1["Order_no"].ToString());
                     Line = int.Parse(SqlRead1["SO_Line"].ToString());
                     PickUnico = Int32.Parse(SqlRead1["IdPick"].ToString());
 
@@ -174,7 +178,7 @@ namespace ControlPicking.Views
         }
 
 
-        private void ActualizarItem(Int32 PickUnico)
+        private void ActualizarItem(Int32 PickUnico, string finalcase)
         {
             string Mensajes;
             try
@@ -184,7 +188,9 @@ namespace ControlPicking.Views
                 SqlCommand SqlQuery = new SqlCommand("ActualizarIU", Services.ConexionSql.Conectar);
                 SqlQuery.CommandType = CommandType.StoredProcedure;
                 SqlQuery.Parameters.AddWithValue("@IdPick", PickUnico);
-               
+                SqlQuery.Parameters.AddWithValue("@Case", finalcase);
+                SqlQuery.Parameters.AddWithValue("@Equipo", equipo);
+
                 SqlQuery.ExecuteNonQuery();
                 Services.ConexionSql.CloseC();
 
@@ -206,5 +212,9 @@ namespace ControlPicking.Views
             txtNparte.Focus();
         }
 
+        protected override async Task<bool> OnBackButtonPressedAsync()
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

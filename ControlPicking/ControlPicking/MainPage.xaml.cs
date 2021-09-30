@@ -16,7 +16,7 @@ namespace ControlPicking
         }
 
      
-        protected override bool OnBackButtonPressed()
+        protected override bool OnBackButtonPressedAsync()
         {
             Device.BeginInvokeOnMainThread(async () =>
             {

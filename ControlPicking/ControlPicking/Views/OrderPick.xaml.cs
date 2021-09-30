@@ -18,29 +18,18 @@ namespace ControlPicking.Views
     {
         Models.ValidacionPick Validaciones = new Models.ValidacionPick();
         List<Models.Listas> OrdenList;
-        String ordentext = "";
+        string ordentext = "",Case,equipo;
         Int32 idpick;
-        public OrderPick()
+
+        public OrderPick(string _case,string _equipo)
         {
             InitializeComponent();
+            Case = _case;
             txtOrden.Text = "";
             txtOrden.Focus();
 
         }
-      
-
-        protected override bool OnBackButtonPressed()
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var result = await this.DisplayAlert("Alerta", "Deseas salir de la aplicación?", "Si", "No").ConfigureAwait(false);
-                if (result) System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-            });
-            txtOrden.Text = "";
-            txtOrden.Focus();
-            return true;
-        }
-     
+       
 
 
         private async void txtOrden_Completed(object sender, EventArgs e)
@@ -138,8 +127,10 @@ namespace ControlPicking.Views
             }
         }
 
-
-
+        private async void btnregresar_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopToRootAsync();
+        }
 
         private async void LvOrdenes_ItemTapped(object sender, ItemTappedEventArgs e)
         {
@@ -148,7 +139,7 @@ namespace ControlPicking.Views
             ordentext = (string)content.Pick_Lnp.Trim();
             lvOrdenes.ItemsSource = null;
             txtOrden.Focus();
-            await Navigation.PushAsync(new OrdenDetalle(ordentext, idpick));
+            await Navigation.PushAsync(new OrdenDetalle(ordentext, idpick, Case));
 
         }
 
@@ -157,6 +148,10 @@ namespace ControlPicking.Views
             base.OnAppearing();
 
             txtOrden.Focus();
+        }
+        protected override bool OnBackButtonPressedAsync()
+        {
+            return true;
         }
     }
 }

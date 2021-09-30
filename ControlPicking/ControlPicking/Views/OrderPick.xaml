@@ -4,16 +4,25 @@
              x:Class="ControlPicking.Views.OrderPick"
              xmlns:local="clr-namespace:ControlPicking.Images"
              xmlns:local1="clr-namespace:ControlPicking.Models"
-             Title="Picking Control">
+             Title="Picking Control"
+             NavigationPage.HasBackButton="False"
+             >
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ImageButton x:Name="btnregresar"
+                     Clicked="btnregresar_Clicked"
+                     Source="{local:ImageResourceExtension ControlPicking.Images.Terminar.png}"
+                     WidthRequest="20"
+                     HeightRequest="20"
+                      HorizontalOptions="EndAndExpand"
+            />
             <Image x:Name="ImageMazda"
                Source="{local:ImageResourceExtension ControlPicking.Images.oficial.PNG}"
                WidthRequest="100"
                HeightRequest="100"
             />
 
-            <Entry Placeholder="Escanea una Orden"
+            <local1:SoftkeyboardDisabledEntry Placeholder="Escanea una Orden"
                    x:Name="txtOrden"
                    PlaceholderColor="Blue"
                    BackgroundColor="LightGray"

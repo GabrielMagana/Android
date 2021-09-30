@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="ControlPicking.Views.Login"
+             xmlns:local="clr-namespace:ControlPicking.Images"
+             Title="Pdc picking">
+    <!-- Layout children vertically -->
+    <ContentPage.Content>
+        <StackLayout Margin="5,5,5,5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="LightGray">
+        
+            <Image x:Name="ImageMazda"
+               Source="{local:ImageResourceExtension EquipoVacio.Images.oficial.PNG}"
+               WidthRequest="50"
+               HeightRequest="100"/>
+
+            <Entry x:Name="Usuario"
+               Keyboard="Telephone"
+               Placeholder="Usuario"
+               HeightRequest="50"
+               WidthRequest="200"
+                IsVisible="true"/>
+
+            <Label x:Name="lblPruebaInfo"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="Black"
+                   />
+            
+            <Label x:Name="lblPruebaDevice"
+                   VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="Black"
+                   />
+
+            <Entry x:Name="Password"
+                   Keyboard="Telephone"
+               Placeholder="Numero Nomina"
+               HeightRequest="50"
+               IsPassword="False"
+               WidthRequest="200"
+               TextChanged="OnLoginButtonClicked"/>
+
+            <Button Text="Login"
+                    Clicked="OnLoginButtonClicked" 
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="50"
+                    WidthRequest="70"
+                    IsVisible="false"   />
+           
+        </StackLayout>
+            <!-- Layout children in two columns -->
+    </ContentPage.Content>
+</ContentPage>

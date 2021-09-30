@@ -13,11 +13,13 @@
   <ItemGroup>
     <None Remove="Images\MazdaLogi.jpg" />
     <None Remove="Images\oficial.PNG" />
+    <None Remove="Images\Terminar.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\MazdaLogi.jpg" />
     <EmbeddedResource Include="Images\oficial.PNG" />
+    <EmbeddedResource Include="Images\Terminar.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\frmCase.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\OrdenDetalle.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

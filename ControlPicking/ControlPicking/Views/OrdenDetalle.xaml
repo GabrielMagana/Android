@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControlPicking.Views.OrdenDetalle"
              xmlns:local="clr-namespace:ControlPicking.Images"
-             xmlns:local1="clr-namespace:ControlPicking.Models"
+             xmlns:local1="clr-namespace:ControlPicking.Models" 
+             NavigationPage.HasBackButton="False"
              Title="Picking Control">
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

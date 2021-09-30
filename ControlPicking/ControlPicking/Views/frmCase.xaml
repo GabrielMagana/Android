@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ControlPicking.Images"
+             xmlns:local1="clr-namespace:ControlPicking.Models"
+             x:Class="ControlPicking.Views.frmCase"
+             Title="Picking Control">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="ImageMazda"
+               Source="{local:ImageResource ControlPicking.Images.oficial.PNG}"
+               WidthRequest="100"
+               HeightRequest="100"
+               />
+
+            <Entry  Placeholder="Escanea una case"
+                   x:Name="txtCase"
+                   PlaceholderColor="Blue"
+                   BackgroundColor="LightGray"
+                   TextColor="Blue"
+                   HorizontalOptions="FillAndExpand"
+                   Completed="txtCase_Completed"
+                   FontSize="Micro"
+                   TextTransform="Uppercase"
+                    />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
