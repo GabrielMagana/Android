@@ -95,7 +95,7 @@ namespace ControlPicking.Views
                         {
                             SqlRead.Close();
                             ConexionSql.CloseC();
-                            await Navigation.PushAsync(new OrderPick( equipo, Usuario.Text));
+                            await Navigation.PushAsync(new OrderPick("Nave7", equipo, int.Parse(Usuario.Text)));
 
 
                         }

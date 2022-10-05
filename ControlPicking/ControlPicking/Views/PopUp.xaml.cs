@@ -28,7 +28,8 @@ namespace ControlPicking.Views
             Iconowarning.IsVisible = false;
             btnno.IsVisible = false;
             TipoAlert();
-        }
+
+        }                       
 
 
         private async void btnResp_Clicked(object sender, EventArgs e)
@@ -72,6 +73,8 @@ namespace ControlPicking.Views
                         if (Confirmacion == null || Confirmacion == 0)
                         {
                             DisplayAlert("Warning", "No tienes permisos para proceder", "OK");
+                            Contrasena.Focus();
+                            Contrasena.Text = "";
 
                         }
                         else
@@ -80,15 +83,16 @@ namespace ControlPicking.Views
                             RegistarLog();
                             if (tipoAlert == 3 || tipoAlert == 4)
                             {
-                                var _navigation = Application.Current.MainPage.Navigation;
-                                var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2];
+                                //var _navigation = Application.Current.MainPage.Navigation;
+                                //var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
                                 //Remove last page
-                                _navigation.RemovePage(_lastPage);
+                               // _navigation.RemovePage(_lastPage);
                                 await Navigation.PopAsync();
+                                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
                             }
                             else
                             {
-                                await Navigation.PopAsync();
+                                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
                             }
 
                         }
@@ -108,11 +112,12 @@ namespace ControlPicking.Views
             {
 
 
-                var _navigation = Application.Current.MainPage.Navigation;
-                var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 2];
+                //var _navigation = Application.Current.MainPage.Navigation;
+               // var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
                 //Remove last page
-                _navigation.RemovePage(_lastPage);
+                //_navigation.RemovePage(_lastPage);
                 await Navigation.PopAsync();
+                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
 
             }
 
@@ -120,12 +125,13 @@ namespace ControlPicking.Views
 
         private async void btnno_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
+            //await Navigation.PopAsync();
         }
 
         protected override bool OnBackButtonPressed()
         {
-            return true;
+            return false;
         }
 
 
@@ -134,7 +140,7 @@ namespace ControlPicking.Views
 
             if (tipoAlert == 1)
             {
-                BackgroundColor = Color.Transparent;
+                FondoTitulo.BackgroundColor = Color.Transparent;
                 FondoTitulo.BackgroundColor = Color.Red;
                 Title.Text = title;
                 Contenido.Text = contend;
@@ -155,7 +161,7 @@ namespace ControlPicking.Views
             if (tipoAlert == 2)
             {
 
-                BackgroundColor = Color.Transparent;
+                FondoTitulo.BackgroundColor = Color.Transparent;
                 FondoTitulo.BackgroundColor = Color.Green;
                 Title.Text = title;
                 Contenido.Text = contend;
@@ -174,7 +180,7 @@ namespace ControlPicking.Views
             if (tipoAlert == 3)
             {
 
-                BackgroundColor = Color.Transparent;
+                FondoTitulo.BackgroundColor = Color.Transparent;
                 FondoTitulo.BackgroundColor = Color.Yellow;
                 Title.Text = title;
                 Contenido.Text = contend;
@@ -193,7 +199,7 @@ namespace ControlPicking.Views
             if (tipoAlert == 4)
             {
 
-                BackgroundColor = Color.Transparent;
+                FondoTitulo.BackgroundColor = Color.Transparent;
                 FondoTitulo.BackgroundColor = Color.Yellow;
                 Title.Text = title;
                 Contenido.Text = contend;

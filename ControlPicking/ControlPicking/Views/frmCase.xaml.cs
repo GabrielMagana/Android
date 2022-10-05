@@ -13,32 +13,31 @@ namespace ControlPicking.Views
     public partial class frmCase : ContentPage
     {
 
-        string equipo;
-        
-        
-        
-        public frmCase()
+        string equipo, Usuario;
+
+        public frmCase(string usuario)
         {
             InitializeComponent();
             equipo = DeviceInfo.Name;
-            
-        }        
-        protected override bool OnBackButtonPressedAsync()
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var result = await this.DisplayAlert("Alerta", "Deseas salir de la aplicación?", "Si", "No").ConfigureAwait(false);
-                if (result) System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
-            });
-            txtCase.Text = "";
-            txtCase.Focus();
-            return true;
+            Usuario = usuario;
         }
+
+        //protected override bool OnBackButtonPressedAsync()
+        //{
+        //    Device.BeginInvokeOnMainThread(async () =>
+        //    {
+        //        var result = await this.DisplayAlert("Alerta", "Deseas salir de la aplicación?", "Si", "No").ConfigureAwait(false);
+        //        if (result) System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+        //    });
+        //    txtCase.Text = "";
+        //    txtCase.Focus();
+        //    return true;
+        //}
         private async void txtCase_Completed(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCase.Text)) 
             {
-                await Navigation.PushAsync(new OrderPick(txtCase.Text,equipo));
+                await Navigation.PushAsync(new OrderPick(txtCase.Text,equipo,int.Parse(Usuario)));
             }
         }
     }

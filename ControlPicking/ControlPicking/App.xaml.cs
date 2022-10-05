@@ -9,7 +9,7 @@ namespace ControlPicking
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new frmCase());
+            MainPage = new NavigationPage(new Login());
         }
 
         protected override void OnStart()

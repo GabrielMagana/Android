@@ -6,7 +6,7 @@ namespace ControlPicking.Services
     public class AudioService
     {
 
-        public static void sound(string _filepath)
+        public static void Sound(string _filepath)
         {
             var assembly = typeof(AudioService).Assembly;
             Stream audiostream = assembly.GetManifestResourceStream(_filepath);

@@ -4,8 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ControlPicking.Images"
-     NavigationPage.HasBackButton="False"  
+    xmlns:local="clr-namespace:ControlPicking.Images" xmlns:models="clr-namespace:ControlPicking.Models"
+    NavigationPage.HasBackButton="False"  
     x:Class="ControlPicking.Views.PopUp">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
         <Frame WidthRequest="250" HeightRequest="250" Padding="15">
@@ -29,8 +29,8 @@
                            WidthRequest="30"
                            HeightRequest="30"/>
                 </StackLayout>
-                
-                <Entry x:Name="Contrasena" Placeholder="Password" PlaceholderColor="Black" Completed="btnResp_Clicked"  IsPassword="True"/>
+
+                <models:SoftkeyboardDisabledEntry x:Name="Contrasena" Placeholder="Password" PlaceholderColor="Black" Completed="btnResp_Clicked"  IsPassword="True"/>
                 <StackLayout Orientation="Horizontal" WidthRequest="250" HeightRequest="35" Padding="0">
                     <Button x:Name="btnResp" BackgroundColor="Transparent" WidthRequest="250" HeightRequest="35" TextColor="Black" Clicked="btnResp_Clicked"></Button>
                     <Button x:Name="btnno" BackgroundColor="Transparent" HeightRequest="35" TextColor="Black" Clicked="btnno_Clicked" ></Button>

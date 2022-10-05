@@ -7,6 +7,15 @@ namespace ControlPicking.Models
     public class ValidacionPick
     {
 
+        public string ValidacionLogin(string Usuario,string Password)
+        {
+            string mensaje="";
+                if(string.IsNullOrEmpty(Usuario) || string.IsNullOrEmpty(Password))
+                    {
+                    mensaje = "Favor de llenar todos los datos";
+                    }
+            return mensaje;
+        }
 
 
         public void EncabezadoFolio(int _Linea, DateTime date, string time, string _contenedor, string _Caja, string _Operador, int _Empleado)

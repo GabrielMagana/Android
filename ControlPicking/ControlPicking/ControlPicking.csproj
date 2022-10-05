@@ -14,22 +14,30 @@
     <None Remove="Images\MazdaLogi.jpg" />
     <None Remove="Images\oficial.PNG" />
     <None Remove="Images\Terminar.png" />
+    <None Remove="Sonidos\Alert.mp3" />
+    <None Remove="Sonidos\Error.mp3" />
+    <None Remove="Sonidos\Successfull.mp3" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Images\MazdaLogi.jpg" />
     <EmbeddedResource Include="Images\oficial.PNG" />
     <EmbeddedResource Include="Images\Terminar.png" />
+    <EmbeddedResource Include="Sonidos\Alert.mp3" />
+    <EmbeddedResource Include="Sonidos\Error.mp3" />
+    <EmbeddedResource Include="Sonidos\Successfull.mp3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
   </ItemGroup>
 
   <ItemGroup>

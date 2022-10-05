@@ -31,6 +31,7 @@
                    Completed="txtOrden_Completed"
                     TextTransform="Uppercase"
              />
+            <Button x:Name="pruebasonido" Clicked="pruebasonido_Clicked" IsVisible="false"/>
             <ListView x:Name="lvOrdenes" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemTapped="LvOrdenes_ItemTapped" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

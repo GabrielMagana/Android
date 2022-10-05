@@ -80,6 +80,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <StackLayout Orientation="Horizontal">
+                <Label x:Name="txtNumeroparte"
+                        FontSize="Micro"
+                        HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
                 <Label x:Name="txtleidos"
                         FontSize="Micro"
                         HorizontalOptions="CenterAndExpand"/>
