@@ -18,7 +18,7 @@ namespace ControlPicking.Views
             InitializeComponent();
             Password.Focus();
             equipo = DeviceInfo.Name;
-            
+
         }
 
 

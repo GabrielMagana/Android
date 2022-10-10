@@ -8,7 +8,7 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(SoftkeyboardDisabledEntry), typeof(SoftkeyboardDisabledEntryRenderer))]
 namespace ControlPicking.Droid
 {
-  
+
     public class SoftkeyboardDisabledEntryRenderer : EntryRenderer
     {
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)

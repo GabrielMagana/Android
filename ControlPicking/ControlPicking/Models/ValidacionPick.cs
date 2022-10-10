@@ -7,13 +7,13 @@ namespace ControlPicking.Models
     public class ValidacionPick
     {
 
-        public string ValidacionLogin(string Usuario,string Password)
+        public string ValidacionLogin(string Usuario, string Password)
         {
-            string mensaje="";
-                if(string.IsNullOrEmpty(Usuario) || string.IsNullOrEmpty(Password))
-                    {
-                    mensaje = "Favor de llenar todos los datos";
-                    }
+            string mensaje = "";
+            if (string.IsNullOrEmpty(Usuario) || string.IsNullOrEmpty(Password))
+            {
+                mensaje = "Favor de llenar todos los datos";
+            }
             return mensaje;
         }
 

@@ -4,8 +4,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:ControlPicking.Images" xmlns:models="clr-namespace:ControlPicking.Models"
+    xmlns:local="clr-namespace:ControlPicking.Images" 
+    xmlns:models="clr-namespace:ControlPicking.Models"
     NavigationPage.HasBackButton="False"  
+    
     x:Class="ControlPicking.Views.PopUp">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0">
         <Frame WidthRequest="250" HeightRequest="250" Padding="15">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,8 +29,10 @@ namespace ControlPicking.Views
             Iconowarning.IsVisible = false;
             btnno.IsVisible = false;
             TipoAlert();
+            Contrasena.Focus();
+            CloseWhenBackgroundIsClicked = false;
 
-        }                       
+        }
 
 
         private async void btnResp_Clicked(object sender, EventArgs e)
@@ -39,7 +42,7 @@ namespace ControlPicking.Views
             char fragment = (char)28;
             int tamano;
 
-            if (tipoAlert == 1 || tipoAlert == 3 || tipoAlert == 4)
+            if (tipoAlert != 2)
             {
 
 
@@ -83,16 +86,17 @@ namespace ControlPicking.Views
                             RegistarLog();
                             if (tipoAlert == 3 || tipoAlert == 4)
                             {
-                                //var _navigation = Application.Current.MainPage.Navigation;
-                                //var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
-                                //Remove last page
-                               // _navigation.RemovePage(_lastPage);
-                                await Navigation.PopAsync();
-                                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
+                                var _navigation = Application.Current.MainPage.Navigation;
+                                var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
+                                //// Remove last page
+                                 _navigation.RemovePage(_lastPage);
+                                await _navigation.PopAsync();
+                                //await PopupNavigation.PopAsync();
                             }
                             else
                             {
-                                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
+                                Navigation.PopAsync();
+                                //await PopupNavigation.PopAsync();
                             }
 
                         }
@@ -104,7 +108,7 @@ namespace ControlPicking.Views
                         Contrasena.Text = "";
                     }
                 }
-               
+
 
             }
 
@@ -112,12 +116,12 @@ namespace ControlPicking.Views
             {
 
 
-                //var _navigation = Application.Current.MainPage.Navigation;
-               // var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
+                var _navigation = Application.Current.MainPage.Navigation;
+                var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
                 //Remove last page
-                //_navigation.RemovePage(_lastPage);
-                await Navigation.PopAsync();
-                await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
+                _navigation.RemovePage(_lastPage);
+                await _navigation.PopAsync();
+                //await PopupNavigation.PopAsync();
 
             }
 
@@ -125,7 +129,7 @@ namespace ControlPicking.Views
 
         private async void btnno_Clicked(object sender, EventArgs e)
         {
-            await Rg.Plugins.Popup.Services.PopupNavigation.PopAsync();
+            await   PopupNavigation.PopAsync();
             //await Navigation.PopAsync();
         }
 
@@ -156,6 +160,8 @@ namespace ControlPicking.Views
                 btnResp.Text = "Aceptar";
                 btnResp.WidthRequest = 250;
                 btnResp.BackgroundColor = Color.Default;
+                Contrasena.Focus();
+                Contrasena.Text = "";
 
             }
             if (tipoAlert == 2)
@@ -193,6 +199,8 @@ namespace ControlPicking.Views
                 Iconowarning.IsVisible = true;
                 btnResp.Text = "Aceptar";
                 btnResp.BackgroundColor = Color.Default;
+                Contrasena.Focus();
+                Contrasena.Text = "";
 
 
             }
@@ -215,6 +223,8 @@ namespace ControlPicking.Views
                 btnno.WidthRequest = 110;
                 btnResp.BackgroundColor = Color.Default;
                 btnno.BackgroundColor = Color.Default;
+                Contrasena.Focus();
+                Contrasena.Text = "";
 
 
             }

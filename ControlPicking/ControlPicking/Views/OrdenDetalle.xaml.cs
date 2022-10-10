@@ -1,15 +1,14 @@
-﻿using ControlPicking.Models;
+﻿using ControlPicking.Services;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Essentials;
-using System.Threading.Tasks;
-using Rg.Plugins.Popup.Services;
-using ControlPicking.Services;
 
 namespace ControlPicking.Views
 {
@@ -68,22 +67,22 @@ namespace ControlPicking.Views
             }
 
 
-           
+
 
             itemParte = Itemtext(txtNparte.Text);
 
-      
+
             if (numeroparte.ToUpper() != itemParte.ToUpper())
             {
 
-                var pr = new PopUp("Error","Numero de parte diferente", itemParte.ToUpper(), numeroparte.ToUpper(),1, picklpn, Usuario);
+                var pr = new PopUp("Error", "Numero de parte diferente", itemParte.ToUpper(), numeroparte.ToUpper(), 1, picklpn, Usuario);
                 AudioService.Sound("ControlPicking.Sonidos.Error.mp3");
-                await PopupNavigation.PushAsync(pr);
-               
+                await Navigation. PushAsync(pr);
+
 
                 //await DisplayAlert("Error", "El número de parte no es el mismo", "OK");
-                txtNparte.Text = "";
-                txtNparte.Focus();
+                //txtNparte.Text = "";
+                //txtNparte.Focus();
                 return;
             }
 
@@ -92,10 +91,10 @@ namespace ControlPicking.Views
                 var pr = new PopUp("Warning", "La orden ya esta completa", itemParte.ToUpper(), "", 3, picklpn, Usuario);
                 AudioService.Sound("ControlPicking.Sonidos.Alert.mp3");
                 await PopupNavigation.PushAsync(pr);
-                
+
                 //await DisplayAlert("Error", "La orden ya esta completa", "OK");
-                txtNparte.Text = "";
-                txtNparte.Focus();
+                //txtNparte.Text = "";
+                //txtNparte.Focus();
                 return;
             }
 
@@ -104,7 +103,6 @@ namespace ControlPicking.Views
 
             txtNparte.Text = "";
             txtNparte.Focus();
-           
 
 
         }
@@ -163,13 +161,13 @@ namespace ControlPicking.Views
                 }
                 if (_Item.Contains("_"))
                 {
-                    _Item = _Item.Replace("'_", "");
+                    _Item = _Item.Replace("_", "");
                 }
             }
             if (_Item.Length <= 13)
             {
                 _Item = _Item + "        ";
-                _Item = _Item.Substring(0, 12);
+                _Item = _Item.Substring(0, 13);
             }
 
             if (_Item.Length < 12)
@@ -178,12 +176,13 @@ namespace ControlPicking.Views
             }
             else
             {
+
                 str = !((!char.IsLetterOrDigit(_Item, 1) || char.IsSeparator(_Item, 1)) || _Item.ToString().Contains<char>(ch)) ? _Item : _Item.Substring(1, _Item.Length - 1);
                 str2 = str.Substring(0, 12).Trim();
             }
             return str2;
 
-            //return itemtxt;
+
         }
 
 
@@ -248,8 +247,8 @@ namespace ControlPicking.Views
         private async Task ActualizarItemAsync(long PickUnico, string finalcase)
         {
             string Mensajes;
-            int cantidad=0;
-           
+            int cantidad = 0;
+
             try
             {
                 Services.ConexionSql.OpenC();
@@ -304,7 +303,7 @@ namespace ControlPicking.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            txtNparte.Text = "";
             txtNparte.Focus();
         }
 

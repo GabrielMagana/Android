@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-//using Android.App;
+﻿//using Android.App;
 using ControlPicking.Models;
 using ControlPicking.Services;
 using System;
@@ -19,11 +18,11 @@ namespace ControlPicking.Views
     {
         Models.ValidacionPick Validaciones = new Models.ValidacionPick();
         List<Models.Listas> OrdenList;
-        string ordentext = "",Case,equipo;
+        string ordentext = "", Case, equipo;
         long idpick;
         int _usuario;
 
-        public OrderPick(string _case,string _equipo,int usuario)
+        public OrderPick(string _case, string _equipo, int usuario)
         {
             InitializeComponent();
             Case = _case;
@@ -32,7 +31,7 @@ namespace ControlPicking.Views
             txtOrden.Focus();
 
         }
-       
+
 
 
         private async void txtOrden_Completed(object sender, EventArgs e)
@@ -44,7 +43,7 @@ namespace ControlPicking.Views
             if (string.IsNullOrWhiteSpace(txtOrden.Text) == true)
             {
                 await DisplayAlert("Error", "Debes escanear una orden", "OK");
-               
+
                 txtOrden.Text = "";
                 txtOrden.Focus();
                 return;
@@ -52,12 +51,12 @@ namespace ControlPicking.Views
 
 
             Ordenleida = txtOrden.Text;
-            tamano = Ordenleida.Length-1;
+            tamano = Ordenleida.Length - 1;
 
-            if (char.IsLetterOrDigit(Ordenleida, 1) == false || char.IsSeparator(Ordenleida, 1) == true ||  Ordenleida.ToString().Contains(fragment) == true)
+            if (char.IsLetterOrDigit(Ordenleida, 1) == false || char.IsSeparator(Ordenleida, 1) == true || Ordenleida.ToString().Contains(fragment) == true)
             {
                 ordentxt = Ordenleida.Substring(1, tamano);
-               
+
             }
             else
             {
@@ -68,7 +67,7 @@ namespace ControlPicking.Views
 
             Orden(ordentxt);
 
-            
+
 
             txtOrden.Text = "";
             txtOrden.Focus();
@@ -82,7 +81,7 @@ namespace ControlPicking.Views
             OrdenList = new List<Models.Listas>();
             string Mensajes = "";
             lvOrdenes.ItemsSource = null;
-            bool Noexiste =false;
+            bool Noexiste = false;
 
             try
             {
@@ -102,21 +101,21 @@ namespace ControlPicking.Views
                     goto Salir;
 
                 }
-                
+
 
                 while (SqlRead1.Read())
                 {
-                    
+
                     OrdenList.Add(new Models.Listas { Pick_Lnp = SqlRead1["Pick_lpn"].ToString(), Orden = int.Parse(SqlRead1["Order_no"].ToString()), Line = int.Parse(SqlRead1["SO_Line"].ToString()), Item = SqlRead1["Item"].ToString(), Estatus = SqlRead1["Estatus"].ToString(), IdPick = long.Parse(SqlRead1["IdPick"].ToString()) });
                     idpick = long.Parse(SqlRead1["IdPick"].ToString());
                     ordentext = SqlRead1["Pick_lpn"].ToString();
                 }
 
-                                             
+
                 SqlRead1.Close();
 
 
-                
+
 
             Salir:
 
@@ -124,8 +123,8 @@ namespace ControlPicking.Views
 
                 if (Noexiste == true)
                 {
-                    
-                    await DisplayAlert("Alerta","No existe esa orden", "Ok");
+
+                    await DisplayAlert("Alerta", "No existe esa orden", "Ok");
                     Services.ConexionSql.CloseC();
                     return;
 
@@ -133,7 +132,7 @@ namespace ControlPicking.Views
 
                 Services.ConexionSql.CloseC();
                 await Navigation.PushAsync(new OrdenDetalle(ordentext.Trim(), idpick, Case, _usuario));
-               
+
             }
             catch (Exception ex)
 
@@ -149,7 +148,7 @@ namespace ControlPicking.Views
         }
 
         private async void LvOrdenes_ItemTapped(object sender, ItemTappedEventArgs e)
-        {  
+        {
             Listas content = (Listas)e.Item;
             idpick = (int)content.IdPick;
             ordentext = (string)content.Pick_Lnp.Trim();

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,9 +31,9 @@ namespace ControlPicking.Views
         //}
         private async void txtCase_Completed(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCase.Text)) 
+            if (!string.IsNullOrEmpty(txtCase.Text))
             {
-                await Navigation.PushAsync(new OrderPick(txtCase.Text,equipo,int.Parse(Usuario)));
+                await Navigation.PushAsync(new OrderPick(txtCase.Text, equipo, int.Parse(Usuario)));
             }
         }
     }
