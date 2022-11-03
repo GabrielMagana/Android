@@ -29,11 +29,18 @@ namespace ControlPicking.Views
             Iconowarning.IsVisible = false;
             btnno.IsVisible = false;
             TipoAlert();
-            Contrasena.Focus();
-            CloseWhenBackgroundIsClicked = false;
+             CloseWhenBackgroundIsClicked = false;
 
         }
 
+        public void Load()
+        {
+               if (tipoAlert != 2)
+                {
+                    Contrasena.Focus();
+                    Contrasena.Text = "";
+                }
+        }
 
         private async void btnResp_Clicked(object sender, EventArgs e)
         {
@@ -44,8 +51,7 @@ namespace ControlPicking.Views
 
             if (tipoAlert != 2)
             {
-
-
+              
                 if (string.IsNullOrEmpty(Contrasena.Text))
                 {
                     DisplayAlert("Warning", "Debe capturar la contraseña del foreman.", "OK");
@@ -90,13 +96,13 @@ namespace ControlPicking.Views
                                 var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
                                 //// Remove last page
                                  _navigation.RemovePage(_lastPage);
-                                await _navigation.PopAsync();
-                                //await PopupNavigation.PopAsync();
+                                //await _navigation.PopAsync();
+                                await PopupNavigation.PopAsync();
                             }
                             else
                             {
+                                //Navigation.PopAsync();
                                 Navigation.PopAsync();
-                                //await PopupNavigation.PopAsync();
                             }
 
                         }
@@ -120,8 +126,8 @@ namespace ControlPicking.Views
                 var _lastPage = this.Navigation.NavigationStack[this.Navigation.NavigationStack.Count - 1];
                 //Remove last page
                 _navigation.RemovePage(_lastPage);
-                await _navigation.PopAsync();
-                //await PopupNavigation.PopAsync();
+                //await _navigation.PopAsync();
+                await PopupNavigation.PopAsync();
 
             }
 
@@ -132,12 +138,11 @@ namespace ControlPicking.Views
             await   PopupNavigation.PopAsync();
             //await Navigation.PopAsync();
         }
-
         protected override bool OnBackButtonPressed()
         {
-            return false;
+            return true;
         }
-
+      
 
         public void TipoAlert()
         {
@@ -160,8 +165,7 @@ namespace ControlPicking.Views
                 btnResp.Text = "Aceptar";
                 btnResp.WidthRequest = 250;
                 btnResp.BackgroundColor = Color.Default;
-                Contrasena.Focus();
-                Contrasena.Text = "";
+                
 
             }
             if (tipoAlert == 2)
@@ -199,8 +203,7 @@ namespace ControlPicking.Views
                 Iconowarning.IsVisible = true;
                 btnResp.Text = "Aceptar";
                 btnResp.BackgroundColor = Color.Default;
-                Contrasena.Focus();
-                Contrasena.Text = "";
+               
 
 
             }
@@ -223,8 +226,7 @@ namespace ControlPicking.Views
                 btnno.WidthRequest = 110;
                 btnResp.BackgroundColor = Color.Default;
                 btnno.BackgroundColor = Color.Default;
-                Contrasena.Focus();
-                Contrasena.Text = "";
+                
 
 
             }

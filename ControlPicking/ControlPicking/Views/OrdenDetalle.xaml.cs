@@ -30,7 +30,6 @@ namespace ControlPicking.Views
             Usuario = _usuario;
             _case1 = _case;
             Orden = _orden;
-            txtNparte.Focus();
             PickUnico = _idPick;
         }
 
@@ -81,8 +80,7 @@ namespace ControlPicking.Views
 
 
                 //await DisplayAlert("Error", "El número de parte no es el mismo", "OK");
-                //txtNparte.Text = "";
-                //txtNparte.Focus();
+            
                 return;
             }
 
@@ -93,17 +91,12 @@ namespace ControlPicking.Views
                 await PopupNavigation.PushAsync(pr);
 
                 //await DisplayAlert("Error", "La orden ya esta completa", "OK");
-                //txtNparte.Text = "";
-                //txtNparte.Focus();
+            
                 return;
             }
 
             ActualizarItemAsync(PickUnico, _case1);
-
-
-            txtNparte.Text = "";
-            txtNparte.Focus();
-
+           
 
         }
 
@@ -257,7 +250,7 @@ namespace ControlPicking.Views
                 SqlQuery.CommandType = CommandType.StoredProcedure;
                 SqlQuery.Parameters.AddWithValue("@IdPick", PickUnico);
                 SqlQuery.Parameters.AddWithValue("@Case", finalcase);
-                SqlQuery.Parameters.AddWithValue("@Equipo", equipo);
+                SqlQuery.Parameters.AddWithValue("@Equipo", Usuario);
 
                 SqlQuery.ExecuteNonQuery();
                 Services.ConexionSql.CloseC();
@@ -288,8 +281,11 @@ namespace ControlPicking.Views
                     var pr = new PopUp("Successfull", "La orden ya esta completa", numeroparte, "", 2, picklpn, Usuario);
                     await PopupNavigation.PushAsync(pr);
                     //await DisplayAlert("Error", "La orden ya esta completa", "OK");
+                    return;
                 }
 
+                txtNparte.Text = "";
+                txtNparte.Focus();
 
             }
             catch (Exception ex)
@@ -302,14 +298,13 @@ namespace ControlPicking.Views
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
+           
             txtNparte.Text = "";
             txtNparte.Focus();
         }
 
         protected override bool OnBackButtonPressed()
         {
-            return false;
+            return true;
         }
-    }
 }
